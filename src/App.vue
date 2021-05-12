@@ -26,4 +26,10 @@ html{
   font-family: 'Raleway', sans-serif;
 }
 
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 </style>

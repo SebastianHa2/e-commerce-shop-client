@@ -28,8 +28,21 @@
     </header>
     <!-- Promotions -->
     <section class="promotions">
-
+        <div class="promotions__text center">
+            <p><span>get</span> 20% off for students</p>
+        </div>
+        <div class="promotions__spring-sale center">
+            <h2>Spring Sale</h2>
+        </div>
     </section>
+    <!-- Men's jeans section -->
+    <section class="man-jeans">
+        <slot name="man-jeans"></slot>
+    </section>
+    <section class="man-jeans-carousel">
+        <slot name="man-jeans-carousel"></slot>
+    </section>
+    
 </template>
 
 <script>
@@ -57,8 +70,8 @@ export default {
 
             .logo{
                 font-family: 'Russo One', sans-serif;
-                color: #fff;
-                font-size: 4rem;
+                color: #faebd7;
+                font-size: 5rem;
                 text-transform: uppercase;
             }
         }
@@ -80,7 +93,7 @@ export default {
             text-transform: uppercase;
             font-weight: 300;
             padding: 2rem 4rem;
-            background: linear-gradient(#eee, #aaa);
+            background: linear-gradient(#eee, #faebd7);
             border-radius: 3rem;
 
             &:hover{
@@ -98,7 +111,7 @@ export default {
             display: flex;
             justify-content: space-around;
             font-size: 2rem;
-            color: #fff;
+            color: #faebd7;
 
             .icon{
                 transition: all 0.4s;
@@ -111,7 +124,7 @@ export default {
             .icons__search{
                 display: flex;
                 padding-right: 8rem;
-                border-bottom: 0.2rem solid #fff;
+                border-bottom: 0.2rem solid #faebd7;
 
                 &:hover{
                     border-color: #000;
@@ -126,6 +139,46 @@ export default {
                 }
             }
 
+        }
+    }
+
+    /* PROMOTIONS */
+
+    .promotions{
+        width: 100%;
+        height: 15rem;
+        display: flex;
+        padding: 1rem;
+        background-color:   #faebd7 ;
+
+        .promotions__text{
+            width: 40%;
+            height: 100%;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+
+            &:hover{
+                cursor: pointer;
+            }
+
+            span{
+                font-size: 5rem;
+            }
+        }
+
+        .promotions__spring-sale{
+            width: 60%;
+            background: url('../../assets/main-sections/flowers.jpeg') center no-repeat;
+            background-size: cover;
+            font-size: 3rem;
+            text-transform: uppercase;
+            color: #faebd7;
+            text-shadow: 0.2rem 0.2rem 0.4rem #000;
+
+            &:hover{
+                cursor: pointer;
+            }
         }
     }
 </style>
