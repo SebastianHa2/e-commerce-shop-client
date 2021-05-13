@@ -12,6 +12,9 @@
         <template v-slot:man-jeans-carousel>
             <man-jeans-carousel></man-jeans-carousel>
         </template>
+        <template v-slot:man-sweatshirts>
+            <man-main-sweatshirts></man-main-sweatshirts>
+        </template>
     </main-section-container>
 </template>
 
@@ -19,9 +22,10 @@
 import MainSectionContainer from '../UI/MainSectionContainer.vue'
 import ManMainJeans from '../ManSection/ManMainJeans.vue'
 import ManJeansCarousel from '../ManSection/ManJeansCarousel.vue'
+import ManMainSweatshirts from '../ManSection/ManMainSweatshirts.vue'
 export default {
     components: {
-        MainSectionContainer, ManMainJeans, ManJeansCarousel
+        MainSectionContainer, ManMainJeans, ManJeansCarousel, ManMainSweatshirts
     }
 }
 </script>

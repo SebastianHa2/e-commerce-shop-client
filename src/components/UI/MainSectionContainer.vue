@@ -4,7 +4,10 @@
         <div class="header__logo">
             <h3 class="logo">Mechanical</h3>
         </div>
-        <div class="header__icons">
+        <div class="navigation">
+            <navigation-container></navigation-container>
+        </div>
+        <div class="header__icons" :class="{colorChange: colorChange}">
             <div class="icon icons__search">
                 <i class="fas fa-search"></i>
                 <p>SEARCH</p>
@@ -39,15 +42,60 @@
     <section class="man-jeans">
         <slot name="man-jeans"></slot>
     </section>
+    <!-- Men's jeans carousel -->
     <section class="man-jeans-carousel">
         <slot name="man-jeans-carousel"></slot>
     </section>
+    <!-- Man's sweatshirts section -->
+    <section class="man-sweatshirts">
+        <slot name="man-sweatshirts"></slot>
+    </section>
+    
+    <!-- Community section -->
+    <section class="community">
+        <community-section></community-section>
+    </section>
+
+    <!-- Newsletter section -->
+    <section class="newsletter">
+        <newsletter-section></newsletter-section>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <footer-container></footer-container>
+    </footer>
     
 </template>
 
 <script>
+import CommunitySection from '../UI/CommunitySection.vue'
+import NewsletterSection from '../UI/NewsletterSection.vue'
+import FooterContainer from '../UI/FooterContainer.vue'
+import NavigationContainer from '../UI/Navigation/NavigationContainer.vue'
 export default {
-    
+    data() {
+        return {
+            colorChange: false
+        }
+    },
+    components: {
+        CommunitySection, NewsletterSection, FooterContainer, NavigationContainer
+    },
+    methods: {
+        // Change icons colour when scrolled past header
+        onScroll() {
+            const scrollPosition = window.pageYOffset
+            if(scrollPosition > document.querySelector('.promotions').getBoundingClientRect().bottom){
+                this.colorChange = true
+            }else{
+                this.colorChange = false;
+            }
+        },
+    },
+    mounted() {
+        window.addEventListener("scroll", this.onScroll)
+    }
 }
 </script>
 
@@ -59,6 +107,8 @@ export default {
         width: 100%;
         display: flex;
         position: relative;
+
+        /* Navigation container */
 
         /* Logo and images */
 
@@ -112,6 +162,7 @@ export default {
             justify-content: space-around;
             font-size: 2rem;
             color: #faebd7;
+            z-index: 100;
 
             .icon{
                 transition: all 0.4s;
@@ -139,6 +190,16 @@ export default {
                 }
             }
 
+        }
+
+        .colorChange{
+            .icon{
+                color: #000;
+            }
+
+            .icons__search{
+                border-bottom: 0.2rem solid #000;
+            }
         }
     }
 
@@ -180,5 +241,22 @@ export default {
                 cursor: pointer;
             }
         }
+    }
+
+    .man-jeans-carousel{
+        padding-bottom: 5rem;
+        background-color: #faebd7;
+        position: relative;
+        height: 45rem;
+    }
+
+    .man-sweatshirts{
+        background-color: #faebd7;
+        padding-bottom: 5rem;
+    }
+
+    .community{
+        padding-bottom: 5rem;
+        background-color: #faebd7;
     }
 </style>
