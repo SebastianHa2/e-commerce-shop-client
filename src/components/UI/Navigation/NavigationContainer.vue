@@ -15,7 +15,7 @@
                 <div class="additional-nav" v-if="active === 'clothing'">
                     <div class="nav-background-2" :class="{slide: active === 'clothing'}"></div>
                     <ul>
-                        <li @click="$router.push('/coat-items-man')">Coats / Jackets</li>
+                        <li @click="$router.push('/jackets-man')">Coats / Jackets</li>
                         <li @click="$router.push('/sweatshirts-items-man')" >Sweatshirts</li>
                         <li>T-shirts</li>
                         <li>Trousers</li>

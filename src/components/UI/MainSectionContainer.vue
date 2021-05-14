@@ -1,4 +1,17 @@
 <template>
+    <!-- Search modal -->
+    <transition name="show-element">
+        <search-modal v-if="showElement === 'search'"></search-modal>
+    </transition>
+    <!-- Log in modal -->
+    <transition name="show-element">
+        <log-in v-if="showElement === 'login'"></log-in>
+    </transition>
+    <!-- Cart modal -->
+    <transition name="show-element">
+        <cart-modal v-if="showElement === 'cart'"></cart-modal>
+    </transition>
+
     <!-- Main Section Header -->
     <header>
         <div class="header__logo">
@@ -8,14 +21,14 @@
             <navigation-container></navigation-container>
         </div>
         <div class="header__icons" :class="{colorChange: colorChange}">
-            <div class="icon icons__search">
+            <div @click="show('search')" class="icon icons__search">
                 <i class="fas fa-search"></i>
                 <p>SEARCH</p>
             </div>
-            <div class="icon icons__user">
+            <div @click="show('login')" class="icon icons__user">
                 <i class="fas fa-user"></i>
             </div>
-            <div class="icon icons__shopping-cart">
+            <div @click="show('cart')" class="icon icons__shopping-cart">
                 <i class="fas fa-shopping-cart"></i>
             </div>
         </div>
@@ -73,14 +86,18 @@ import CommunitySection from '../UI/CommunitySection.vue'
 import NewsletterSection from '../UI/NewsletterSection.vue'
 import FooterContainer from '../UI/FooterContainer.vue'
 import NavigationContainer from '../UI/Navigation/NavigationContainer.vue'
+import SearchModal from '../UI/Modals/SearchModal.vue'
+import LogIn from '../UI/Modals/LogIn.vue'
+import CartModal from '../UI/Modals/CartModal.vue'
 export default {
     data() {
         return {
-            colorChange: false
+            colorChange: false,
+            showElement: ''
         }
     },
     components: {
-        CommunitySection, NewsletterSection, FooterContainer, NavigationContainer
+        CommunitySection, NewsletterSection, FooterContainer, NavigationContainer, SearchModal, LogIn, CartModal
     },
     methods: {
         // Change icons colour when scrolled past header
@@ -92,9 +109,23 @@ export default {
                 this.colorChange = false;
             }
         },
+        show(element) {
+            this.showElement = element
+            document.body.style.overflow = "hidden"
+        },
+        hide() {
+            this.showElement = ''
+            document.body.style.overflow = "visible"
+        }
     },
     mounted() {
         window.addEventListener("scroll", this.onScroll)
+    },
+    provide() {
+        return {
+            hide: this.hide,
+            show: this.show
+        }
     }
 }
 </script>
@@ -258,5 +289,19 @@ export default {
     .community{
         padding-bottom: 5rem;
         background-color: #faebd7;
+    }
+
+    /* Animations for showing modals */
+
+    .show-element-enter-from, .show-element-leave-to{
+        opacity: 0;
+    }
+
+    .show-element-enter-active, .show-element-leave-active{
+        transition: all 0.4s;
+    }
+
+    .show-element-enter-to, .show-element-leave-from{
+        opacity: 1;
     }
 </style>
